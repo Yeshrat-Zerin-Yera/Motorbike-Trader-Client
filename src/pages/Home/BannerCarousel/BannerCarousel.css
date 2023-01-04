@@ -2,3 +2,11 @@
 .carousel-status {
     display: none;
 }
+
+.slide::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #1c191997 100%, #3f3f3f00 100%);
+}
