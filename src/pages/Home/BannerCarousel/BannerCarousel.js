@@ -24,7 +24,7 @@ const BannerCarousel = () => {
                         {/* Content */}
                         <p className='hidden sm:block md:text-xl mb-6'>{slide?.content}</p>
                         {/* Button */}
-                        <Link to='/' class="btn border-0 bg-gradient-to-r from-cyan-400 to-blue-500">Products</Link>
+                        <Link to='/' className="btn border-0 bg-gradient-to-r from-cyan-400 to-blue-500">Products</Link>
                     </div>
                 </div>)
             }

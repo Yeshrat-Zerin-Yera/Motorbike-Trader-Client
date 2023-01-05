@@ -1,13 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
+import Logo from '../../../assets/logo/logo.png';
 
 const Header = () => {
+    // Auth Context
+    const { user, logOut } = useContext(AuthContext);
     // Nav Menu
     const navMenu = <React.Fragment>
         <li><Link to='/'>Home</Link></li>
-        <li><Link to='/dashboard'>Dashboard</Link></li>
+        {
+            user?.uid && <li><Link to='/dashboard'>Dashboard</Link></li>
+        }
         <li><Link to='/blog'>Blog</Link></li>
-        <li><Link to='/signin' className='btn btn-white btn-outline'>Sign In</Link></li>
+        {
+            user?.uid ? <li><Link to='/signin' onClick={logOut} className='btn btn-white btn-outline'>Sign Out</Link></li> : <li><Link to='/signin' className='btn btn-white btn-outline'>Sign In</Link></li>
+        }
     </React.Fragment>
 
     return (
@@ -25,8 +33,8 @@ const Header = () => {
                         {navMenu}
                     </ul>
                 </div>
-                {/* Brand Name */}
-                <Link to='/' className="btn btn-ghost normal-case text-xl">Motorbike Trader</Link>
+                {/* Brand Name & Logo */}
+                <Link to='/' className="btn btn-ghost normal-case text-xl"><img src={Logo} alt="" className='h-12' />Motorbike Trader</Link>
             </div>
             {/* End Menu */}
             <div className="navbar-end w-full hidden lg:flex">
