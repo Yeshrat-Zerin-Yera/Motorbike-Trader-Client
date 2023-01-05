@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import Logo from '../../../assets/logo/logo.png';
 
-const Header = () => {
+const Header = ({ dashboardDrawer }) => {
     // Auth Context
     const { user, logOut } = useContext(AuthContext);
     // Nav Menu
@@ -41,6 +41,9 @@ const Header = () => {
                 <ul className="menu menu-horizontal px-1 justify-end">
                     {navMenu}
                 </ul>
+            </div>
+            <div className="navbar-end w-full flex lg:hidden">
+                {dashboardDrawer}
             </div>
         </div>
     );
