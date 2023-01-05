@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { toast } from 'react-hot-toast';
-import { FaUser } from 'react-icons/fa';
+import { FaUser, FaCheckCircle, FaTrash } from 'react-icons/fa';
 import Loading from '../../Shared/Loading/Loading';
 
 const AllSellers = () => {
@@ -35,7 +35,7 @@ const AllSellers = () => {
                 .then(data => {
                     console.log(data);
                     if (data?.deletedCount > 0) {
-                        // Toast Of Deleted Successfully
+                        // Delete Successfull Toast
                         toast.success(`Seller ${seller?.name} Deleted SucccessFully`);
                         // Refetch
                         refetch();
@@ -43,8 +43,35 @@ const AllSellers = () => {
                 })
                 .catch(error => {
                     console.error(error);
-                    // Toast Of Deletion Unuccessfull
+                    // Delete Unuccessfull Toast
                     toast.error(`Seller ${seller?.name} Deletetion Was UnucccessFull`);
+                })
+        }
+    };
+
+    // Handle Verify Seller
+    const handleVerifySeller = seller => {
+        // Confirm Dialog To Processed Verify Operation
+        const processed = window.confirm(`Are You Sure You Want To Verify Seller ${seller?.name}`);
+        // Verify Operation
+        if (processed) {
+            fetch(`http://localhost:5000/users/${seller?._id}`, {
+                method: 'PUT'
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    if (data?.modifiedCount > 0) {
+                        // Modify Successfull Toast
+                        toast.success(`Seller ${seller?.name} Verified`);
+                        // Refetch
+                        refetch();
+                    }
+                })
+                .catch(error => {
+                    console.error(error);
+                    // Modify Successfull Toast
+                    toast.error(`Seller ${seller?.name} Verification Was Unsuccessfull`);
                 })
         }
     };
@@ -87,13 +114,21 @@ const AllSellers = () => {
                                 {/* Verify Seller */}
                                 <td>
                                     {
-                                        seller?.status === 'verified '
-                                            ? <span className='text-blue-500'>Verified</span>
-                                            : <button className="btn btn-accent text-white btn-sm">Verify</button>
+                                        seller?.status === 'Verified'
+                                            ? <span className='text-accent flex items-center'>
+                                                {/* Check Mark */}
+                                                <FaCheckCircle className='text-green-500 text-2xl inline' />
+                                                {/* Varified */}
+                                                <span className='ml-2'>Verified</span>
+                                            </span>
+                                            // Verify Button
+                                            : <button onClick={() => handleVerifySeller(seller)} className="btn btn-accent text-white btn-sm">Verify</button>
                                     }
                                 </td>
+                                {/* Delete Seller */}
                                 <td>
-                                    <button onClick={() => handleDeleteSeller(seller)} className='btn btn-error btn-sm text-white'>Delete</button>
+                                    <button onClick={() => handleDeleteSeller(seller)} className='bg-error rounded-lg p-[6px] text-white flex items-center font-[500]'>
+                                        Delete <FaTrash className='ml-1' /></button>
                                 </td>
                             </tr>)
                         }
