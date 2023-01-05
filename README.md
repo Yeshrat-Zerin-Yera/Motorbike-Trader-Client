@@ -57,5 +57,5 @@ Frameworks and libraries used in this website:
 
 ## Admin Email & Password
 
-Admin Email: admin@gmail.com
-Admin Password: 123456
+adminEmail: \<admin@gmail.com\>
+adminPassword: \<123456\>
