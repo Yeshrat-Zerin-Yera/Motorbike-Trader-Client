@@ -4,13 +4,13 @@ import { FaBars } from 'react-icons/fa'
 import Footer from '../../../pages/Shared/Footer/Footer';
 import { Link, Outlet } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
-import useSeller from '../../../hooks/userSeller';
+import useRole from '../../../hooks/useRole';
 
 const DashboardLayout = () => {
     // Auth Context
     const { user } = useContext(AuthContext);
-    // [isSeller] From useSeller
-    const [isSeller] = useSeller(user?.email);
+    // [isSeller] From useRole
+    const [userRole] = useRole(user?.email);
 
     // Dashboard Drawer
     const dashboardDrawer = <label htmlFor="dashboard-drawer" className='btn btn-ghost drawer-button'><FaBars /></label>
@@ -35,10 +35,13 @@ const DashboardLayout = () => {
                     {/* Dashboard Sidebar Links */}
                     <ul className="menu p-4 w-80 bg-base-100 text-base-content">
                         {
-                            isSeller === 'Seller' && <>
+                            userRole === 'Seller' && <>
                                 <li><Link to='/dashboard/addaproduct' className={btnClass}>Add A Product</Link></li>
                                 <li><Link to='/dashboard/myproducts' className={btnClass}>My Products</Link></li>
                             </>
+                        }
+                        {
+                            userRole === 'Buyer' && <li><Link to='/dashboard/myorders' className={btnClass}>My Orders</Link></li>
                         }
                     </ul>
 

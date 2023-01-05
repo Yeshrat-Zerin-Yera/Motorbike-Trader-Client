@@ -4,7 +4,7 @@ import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import useRole from '../../hooks/useRole';
 import Loading from '../../pages/Shared/Loading/Loading';
 
-const SellerRoute = ({ children }) => {
+const BuyerRoute = ({ children }) => {
     // Auth Context
     const { user, loading } = useContext(AuthContext);
     // [userRole, isUserRoleLoading] From useRole
@@ -16,10 +16,10 @@ const SellerRoute = ({ children }) => {
         return <Loading></Loading>
     }
     // User
-    if (user && userRole === 'Seller') {
+    if (user && userRole === 'Buyer') {
         return children;
     }
     return <Navigate to='/signin' state={{ from: location }} replace></Navigate>;
 };
 
-export default SellerRoute;
+export default BuyerRoute;
