@@ -115,9 +115,9 @@ const AllSellers = () => {
                                 <td>
                                     {
                                         seller?.status === 'Verified'
-                                            ? <span className='text-accent flex items-center'>
+                                            ? <span className='flex items-center text-blue-500'>
                                                 {/* Check Mark */}
-                                                <FaCheckCircle className='text-green-500 text-2xl inline' />
+                                                <FaCheckCircle className='text-2xl inline' />
                                                 {/* Varified */}
                                                 <span className='ml-2'>Verified</span>
                                             </span>
@@ -127,7 +127,7 @@ const AllSellers = () => {
                                 </td>
                                 {/* Delete Seller */}
                                 <td>
-                                    <button onClick={() => handleDeleteSeller(seller)} className='bg-error rounded-lg p-[6px] text-white flex items-center font-[500]'>
+                                    <button onClick={() => handleDeleteSeller(seller)} className='bg-error rounded-lg p-[6px] text-white flex items-center font-[500] hover:bg-red-500'>
                                         Delete <FaTrash className='ml-1' /></button>
                                 </td>
                             </tr>)
