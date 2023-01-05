@@ -16,7 +16,7 @@ const DashboardLayout = () => {
     const dashboardDrawer = <label htmlFor="dashboard-drawer" className='btn btn-ghost drawer-button'><FaBars /></label>
 
     // Button Class
-    const btnClass = 'btn border-none bg-gradient-to-r from-cyan-400 to-blue-500 text-white mb-3'
+    const btnClass = 'btn border-none bg-gradient-to-r from-cyan-400 to-blue-500 text-white mb-3';
 
     return (
         <div>
@@ -26,7 +26,7 @@ const DashboardLayout = () => {
             <div className="drawer drawer-mobile drawer-end my-12">
                 <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
                 {/* Dashboard Content */}
-                <div className="drawer-content bg-blue-100">
+                <div className="drawer-content bg-blue-100 p-6">
                     <Outlet></Outlet>
                 </div>
                 {/* Dashboard Sidebar */}

@@ -5,10 +5,12 @@ import Loading from '../Shared/Loading/Loading';
 const Blog = () => {
     // Get Blogs From Database
     const blogs = useLoaderData();
+    // Navigation
     const navigation = useNavigation();
 
-    if (navigation === 'loading') {
-        return <Loading></Loading>
+    // Loading
+    if (navigation.state === 'loading') {
+        return <Loading></Loading>;
     }
 
     return (
