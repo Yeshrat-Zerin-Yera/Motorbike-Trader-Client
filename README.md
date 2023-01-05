@@ -2,7 +2,7 @@
 
 ## Description
 
-This is the server side of a motorbike resell website. User can log in as buyer or seller. Buyer will be able to bye various motorbikes and seller will be able to sell their used motorbikes. Admin user is available. Sign up and login using form & google is available. The website is hosted in firebase. There are lots more features.
+This is the server side of a motorbike resell website. User can log in as buyer or seller. Buyer will be able to bye various motorbikes and seller will be able to sell their used motorbikes. Admin user is available. Sign up and login using form & google is available. The website is hosted in firebase. There are lots of more features.
 
 ## Important links
 
