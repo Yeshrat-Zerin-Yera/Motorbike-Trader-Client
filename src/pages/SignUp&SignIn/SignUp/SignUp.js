@@ -41,6 +41,9 @@ const SignUp = () => {
                             img: data?.photoURL,
                             role: data?.role
                         }
+                        if (data?.role === 'Seller') {
+                            dbUser.status = 'Unverified';
+                        }
                         saveUserToDB(dbUser);
                         // Toast Sign Up
                         toast.success('Sign Up Successfull');

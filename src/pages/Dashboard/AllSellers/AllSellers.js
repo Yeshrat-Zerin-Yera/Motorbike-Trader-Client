@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { toast } from 'react-hot-toast';
-import { FaTrash, FaUser } from 'react-icons/fa';
+import { FaUser } from 'react-icons/fa';
 import Loading from '../../Shared/Loading/Loading';
 
 const AllSellers = () => {
@@ -15,6 +15,11 @@ const AllSellers = () => {
     // Loading
     if (isLoading) {
         return <Loading></Loading>;
+    }
+
+    // If There Is No Seller
+    if (sellers.length === 0) {
+        return <h2 className="text-2xl text-center text-accent font-bold">There Is No Seller</h2>
     }
 
     // Handle Delete Seller
@@ -87,7 +92,9 @@ const AllSellers = () => {
                                             : <button className="btn btn-accent text-white btn-sm">Verify</button>
                                     }
                                 </td>
-                                <td><button onClick={() => handleDeleteSeller(seller)} className='btn btn-error btn-sm text-white'>Delete <FaTrash className='ml-1' /></button></td>
+                                <td>
+                                    <button onClick={() => handleDeleteSeller(seller)} className='btn btn-error btn-sm text-white'>Delete</button>
+                                </td>
                             </tr>)
                         }
                     </tbody>
