@@ -36,7 +36,7 @@ const AllSellers = () => {
                     console.log(data);
                     if (data?.deletedCount > 0) {
                         // Delete Successfull Toast
-                        toast.success(`Seller ${seller?.name} Deleted SucccessFully`);
+                        toast.success(`Seller ${seller?.name} Deleted Succcessfully`);
                         // Refetch
                         refetch();
                     }
@@ -44,7 +44,7 @@ const AllSellers = () => {
                 .catch(error => {
                     console.error(error);
                     // Delete Unuccessfull Toast
-                    toast.error(`Seller ${seller?.name} Deletetion Was UnucccessFull`);
+                    toast.error(`Seller ${seller?.name} Deletetion Was Unucccessfull`);
                 })
         }
     };
