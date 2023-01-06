@@ -9,12 +9,12 @@ const PrivateRoute = ({ children }) => {
     // Location
     const location = useLocation();
 
-    // Loading
+    // If Loading
     if (loading) {
         return <Loading></Loading>
     }
 
-    // If User Present User
+    // If User Present
     if (user) {
         return children;
     }

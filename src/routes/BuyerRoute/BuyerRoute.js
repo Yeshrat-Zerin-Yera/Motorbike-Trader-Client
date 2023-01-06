@@ -11,11 +11,13 @@ const BuyerRoute = ({ children }) => {
     const [userRole, isUserRoleLoading] = useRole(user?.email);
     // Location
     const location = useLocation();
-    // Loading
+
+    // If Loading
     if (loading || isUserRoleLoading) {
         return <Loading></Loading>
     }
-    // User
+
+    // If User Present
     if (user && userRole === 'Buyer') {
         return children;
     }

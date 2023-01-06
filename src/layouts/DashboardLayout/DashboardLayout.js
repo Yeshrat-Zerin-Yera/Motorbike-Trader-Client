@@ -1,12 +1,15 @@
 import React, { useContext } from 'react';
-import Header from '../../../pages/Shared/Header/Header';
+import Header from '../../pages/Shared/Header/Header';
 import { FaBars } from 'react-icons/fa'
-import Footer from '../../../pages/Shared/Footer/Footer';
+import Footer from '../../pages/Shared/Footer/Footer';
 import { Link, Outlet } from 'react-router-dom';
-import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
-import useRole from '../../../hooks/useRole';
+import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
+import useRole from '../../hooks/useRole';
+import useTitle from '../../hooks/useTitle';
 
 const DashboardLayout = () => {
+    // Title
+    useTitle('Dashboard');
     // Auth Context
     const { user } = useContext(AuthContext);
     // [isSeller] From useRole
@@ -50,9 +53,9 @@ const DashboardLayout = () => {
                             </>
                         }
                     </ul>
-
                 </div>
             </div>
+            {/* Footer */}
             <Footer></Footer>
         </div>
     );

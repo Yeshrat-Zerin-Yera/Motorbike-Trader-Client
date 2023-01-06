@@ -1,14 +1,21 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useContext } from 'react';
 import { toast } from 'react-hot-toast';
 import { FaCheckCircle, FaTrash, FaProductHunt } from 'react-icons/fa';
+import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
+import useTitle from '../../../hooks/useTitle';
 import Loading from '../../Shared/Loading/Loading';
 
 const MyProducts = () => {
+    // Title
+    useTitle('My Products');
+    // Auth Context
+    const { user } = useContext(AuthContext);
+
     // Get User's Products From Database
     const { data: products = [], isLoading, refetch } = useQuery({
         queryKey: ['products'],
-        queryFn: () => fetch('http://localhost:5000/products')
+        queryFn: () => fetch(`http://localhost:5000/products/?email=${user?.email}`)
             .then(res => res.json())
     });
 
@@ -111,7 +118,7 @@ const MyProducts = () => {
                                 {/* Product */}
                                 <td>{product?.productName}</td>
                                 {/* Price */}
-                                <td className='font-semibold'>{product?.sellingPrice}$</td>
+                                <td className='font-semibold'>{product?.resellPrice}$</td>
                                 {/* Status */}
                                 <td className={product?.status === 'Available' ? 'text-blue-500' : 'text-orange-500'} >{product?.status}</td>
                                 {/* Advertise Product */}

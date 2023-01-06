@@ -1,14 +1,16 @@
 import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
-import DashboardLayout from '../../layouts/Main/DashboardLayout/DashboardLayout';
+import DashboardLayout from '../../layouts/DashboardLayout/DashboardLayout';
 import Main from '../../layouts/Main/Main';
-import Blog from '../../pages/Blog/Blog';
+import Blog from '../../pages/Blog/Blog/Blog';
+import BlogDetails from '../../pages/Blog/BlogDetails/BlogDetails';
 import AddAProduct from '../../pages/Dashboard/AddAProduct/AddAProduct';
 import AllBuyers from '../../pages/Dashboard/AllBuyers/AllBuyers';
 import AllSellers from '../../pages/Dashboard/AllSellers/AllSellers';
 import MyOrders from '../../pages/Dashboard/MyOrders/MyOrders';
 import MyProducts from '../../pages/Dashboard/MyProducts/MyProducts';
 import Home from '../../pages/Home/Home/Home';
+import Products from '../../pages/Products/Products';
 import DisplayError from '../../pages/Shared/DisplayError/DisplayError';
 import SignIn from '../../pages/SignUp&SignIn/SignIn/SignIn';
 import SignUp from '../../pages/SignUp&SignIn/SignUp/SignUp';
@@ -18,10 +20,10 @@ import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import SellerRoute from '../SellerRoute/SellerRoute';
 
 const router = createBrowserRouter([
+    // Main
     {
         path: '/',
         element: <Main></Main>,
-        errorElement: <DisplayError></DisplayError>,
         children: [
             {
                 path: '/',
@@ -39,13 +41,23 @@ const router = createBrowserRouter([
                 path: '/blog',
                 element: <Blog></Blog>,
                 loader: () => fetch('http://localhost:5000/blogs')
+            },
+            {
+                path: '/blogs/:id',
+                element: <BlogDetails></BlogDetails>,
+                loader: ({ params }) => fetch(`http://localhost:5000/blogs/${params.id}`)
+            },
+            {
+                path: '/categories/:id',
+                element: <PrivateRoute><Products></Products></PrivateRoute>,
+                loader: ({ params }) => fetch(`http://localhost:5000/categories/${params?.id}`)
             }
         ]
     },
+    // Dashboard
     {
         path: '/dashboard',
         element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
-        errorElement: <DisplayError></DisplayError>,
         children: [
             {
                 path: '/dashboard/addaproduct',
@@ -68,6 +80,10 @@ const router = createBrowserRouter([
                 element: <AdminRoute><AllBuyers></AllBuyers></AdminRoute>
             }
         ]
+    },
+    {
+        path: '*',
+        element: <DisplayError></DisplayError>
     }
 ]);
 

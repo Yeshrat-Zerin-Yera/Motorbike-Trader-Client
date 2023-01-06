@@ -29,18 +29,22 @@ const AddAProduct = () => {
             .then(imgData => {
                 if (imgData.success) {
                     // Post Product To Database
+                    // Get Current Date
+                    const current = new Date();
+                    const date = `${current.getFullYear()}-${current.getMonth() + 1}-${current.getDate()}`;
                     const product = {
                         productName: data?.productName,
                         img: imgData?.data?.url,
-                        buyingPrice: data?.buyingPrice,
-                        sellingPrice: data?.sellingPrice,
+                        orginalPrice: data?.orginalPrice,
+                        resellPrice: data?.resellPrice,
                         category: data?.category,
                         condition: data?.condition,
                         status: 'Available',
                         advertised: false,
                         purchaseDate: data.purchaseDate,
-                        seller: data?.sellerName,
-                        email: data?.sellerEmail,
+                        resellDate: date,
+                        seller: user?.displayName,
+                        email: user?.email,
                         phoneNumber: data?.phoneNumber,
                         location: data?.location,
                         description: data?.description
@@ -88,23 +92,23 @@ const AddAProduct = () => {
                     {/* Product Image Error */}
                     {errors?.img && <span className='text-xs text-error mt-1'>{errors?.img?.message}</span>}
                 </div>
-                {/* Product Buying Price */}
+                {/* Product Orginal Price */}
                 <div className="form-control">
                     <label className="label">
-                        <span className="label-text">Buying Price</span>
+                        <span className="label-text">Orginal Price</span>
                     </label>
-                    <input type="number" placeholder="Buying Price" className="input input-bordered w-full" {...register('buyingPrice', { required: "Buying price must be included" })} />
-                    {/* Product Buying Price Error */}
-                    {errors?.buyingPrice && <span className='text-xs text-error mt-1'>{errors?.buyingPrice?.message}</span>}
+                    <input type="number" placeholder="Orginal Price" className="input input-bordered w-full" {...register('orginalPrice', { required: "Orginal price must be included" })} />
+                    {/* Product Orginal Price Error */}
+                    {errors?.orginalPrice && <span className='text-xs text-error mt-1'>{errors?.orginalPrice?.message}</span>}
                 </div>
-                {/* Product Selling Price */}
+                {/* Product Resell Price */}
                 <div className="form-control">
                     <label className="label">
-                        <span className="label-text">Selling Price</span>
+                        <span className="label-text">Resell Price</span>
                     </label>
-                    <input type="number" placeholder="Selling Price" className="input input-bordered w-full" {...register('sellingPrice', { required: "Selling price must be included" })} />
-                    {/* Product Selling Price Error */}
-                    {errors?.sellingPrice && <span className='text-xs text-error mt-1'>{errors?.sellingPrice?.message}</span>}
+                    <input type="number" placeholder="Resell Price" className="input input-bordered w-full" {...register('resellPrice', { required: "Resell price must be included" })} />
+                    {/* Product Resell Price Error */}
+                    {errors?.resellPrice && <span className='text-xs text-error mt-1'>{errors?.resellPrice?.message}</span>}
                 </div>
                 {/* Product Category */}
                 <div className="form-control">

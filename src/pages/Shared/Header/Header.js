@@ -1,14 +1,30 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
-import Logo from '../../../assets/logo/logo.png';
+import Logo from '../../../assets/images/logo/logo.png';
 
 const Header = ({ dashboardDrawer }) => {
     // Auth Context
     const { user, logOut } = useContext(AuthContext);
+
     // Nav Menu
     const navMenu = <React.Fragment>
         <li><Link to='/'>Home</Link></li>
+        {/* Dropdown Menu  */}
+        <li tabIndex={0} className='z-50'>
+            <span>
+                Categories
+                <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" /></svg>
+            </span>
+            <ul className="p-1 bg-base-100 text-cyan-500">
+                <li><Link to='categories/1' className='px-6 py-1'>Yamaha</Link></li>
+                <li><Link to='categories/2' className='px-6 py-1'>Honda</Link></li>
+                <li><Link to='categories/3' className='px-6 py-1'>Suzuki</Link></li>
+                <li><Link to='categories/4' className='px-6 py-1'>Hero</Link></li>
+                <li><Link to='categories/5' className='px-6 py-1'>Bajaj</Link></li>
+                <li><Link to='categories/6' className='px-6 py-1'>TVS</Link></li>
+            </ul>
+        </li>
         {
             user?.uid && <li><Link to='/dashboard'>Dashboard</Link></li>
         }

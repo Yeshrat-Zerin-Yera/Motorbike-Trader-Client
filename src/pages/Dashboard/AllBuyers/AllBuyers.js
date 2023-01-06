@@ -2,9 +2,13 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { toast } from 'react-hot-toast';
 import { FaUser, FaTrash } from 'react-icons/fa';
+import useTitle from '../../../hooks/useTitle';
 import Loading from '../../Shared/Loading/Loading';
 
 const AllBuyers = () => {
+    // Title
+    useTitle('All Buyers');
+
     // Get All Sellers From Database
     const { data: buyers = [], isLoading, refetch } = useQuery({
         queryKey: ['buyers'],
