@@ -14,7 +14,7 @@ const BlogDetails = () => {
             <div className='flex flex-col lg:flex-row mx-3'>
                 {/* Image */}
                 <div className='md:mr-6 lg:w-1/2'>
-                    <img src={img} alt="" className='rounded-lg mb-6 w-full' />
+                    <img src={img} alt="" className='mb-6 w-full' />
                 </div>
                 {/* Details */}
                 <div className='lg:w-1/2'>

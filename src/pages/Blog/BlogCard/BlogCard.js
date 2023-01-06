@@ -6,7 +6,7 @@ const BlogCard = ({ blog }) => {
     const { _id, img, title, details } = blog;
 
     return (
-        <div className="card w-full bg-base-100 shadow-2xl">
+        <div className="card w-full bg-base-100 shadow-2xl rounded-none">
             {/* Blog Image */}
             <figure><img src={img} alt="" /></figure>
             {/* Blog Details */}
