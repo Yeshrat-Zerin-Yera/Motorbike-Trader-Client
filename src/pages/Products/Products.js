@@ -35,7 +35,7 @@ const Products = () => {
     return (
         <div className='my-12 grid grid-cols-1 md:grid-cols-2 gap-6 mx-6'>
             {
-                products.map(product => <div key={product?._id} className="card lg:card-side bg-base-100">
+                products.map(product => <div key={product?._id} className="card lg:card-side bg-base-100 shadow-2xl rounded-none">
                     <figure className='lg:w-1/2'><img src={product?.img} alt="Album" className='w-full' /></figure>
                     <div className="card-body lg:w-1/2">
                         <h2 className="card-title">{product?.productName}</h2>
