@@ -10,7 +10,7 @@ import AllSellers from '../../pages/Dashboard/AllSellers/AllSellers';
 import MyOrders from '../../pages/Dashboard/MyOrders/MyOrders';
 import MyProducts from '../../pages/Dashboard/MyProducts/MyProducts';
 import Home from '../../pages/Home/Home/Home';
-import Products from '../../pages/Products/Products';
+import Products from '../../pages/Products/Products/Products';
 import DisplayError from '../../pages/Shared/DisplayError/DisplayError';
 import SignIn from '../../pages/SignUp&SignIn/SignIn/SignIn';
 import SignUp from '../../pages/SignUp&SignIn/SignUp/SignUp';

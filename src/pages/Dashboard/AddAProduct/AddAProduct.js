@@ -47,7 +47,8 @@ const AddAProduct = () => {
                         email: user?.email,
                         phoneNumber: data?.phoneNumber,
                         location: data?.location,
-                        description: data?.description
+                        description: data?.description,
+                        isSellerVerified: false
                     }
                     fetch('http://localhost:5000/products', {
                         method: 'POST',
