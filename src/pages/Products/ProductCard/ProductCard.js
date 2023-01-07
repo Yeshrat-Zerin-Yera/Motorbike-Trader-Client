@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FaCheckCircle } from 'react-icons/fa';
+import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
+import useRole from '../../../hooks/useRole';
 
 const ProductCard = ({ product, calculateYearsOfUse, setBookingProduct }) => {
+    // Auth Context
+    const { user } = useContext(AuthContext);
+    // User Role
+    const [userRole] = useRole(user?.email);
+
     return (
         <div className="card lg:card-side bg-base-100 shadow-2xl rounded-none">
             {/* Product Image */}
@@ -32,7 +39,9 @@ const ProductCard = ({ product, calculateYearsOfUse, setBookingProduct }) => {
                 {/* Book Now Button */}
                 <div className="card-actions justify-end">
                     {/* The Button To Open Modal */}
-                    <label htmlFor="bookingModal" onClick={() => setBookingProduct(product)} className="btn border-none bg-gradient-to-r from-cyan-400 to-blue-500 text-white" disabled={product?.status === 'Sold'} product={product}>Book Now</label>
+                    {
+                        userRole === 'Buyer' && <label htmlFor="bookingModal" onClick={() => setBookingProduct(product)} className="btn border-none bg-gradient-to-r from-cyan-400 to-blue-500 text-white" disabled={product?.status === 'Sold'} product={product}>Book Now</label>
+                    }
                 </div>
             </div>
         </div>
