@@ -9,6 +9,7 @@ import AllBuyers from '../../pages/Dashboard/AllBuyers/AllBuyers';
 import AllSellers from '../../pages/Dashboard/AllSellers/AllSellers';
 import MyOrders from '../../pages/Dashboard/MyOrders/MyOrders';
 import MyProducts from '../../pages/Dashboard/MyProducts/MyProducts';
+import Payment from '../../pages/Dashboard/Payment/Payment';
 import Home from '../../pages/Home/Home/Home';
 import Products from '../../pages/Products/Products/Products';
 import DisplayError from '../../pages/Shared/DisplayError/DisplayError';
@@ -78,6 +79,11 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/allbuyers',
                 element: <AdminRoute><AllBuyers></AllBuyers></AdminRoute>
+            },
+            {
+                path: '/dashboard/payment/:id',
+                element: <Payment></Payment>,
+                loader: ({ params }) => fetch(`http://localhost:5000/bookings/payment/${params?.id}`)
             }
         ]
     },

@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 const BookingModal = ({ bookingProduct, setBookingProduct }) => {
@@ -8,6 +9,8 @@ const BookingModal = ({ bookingProduct, setBookingProduct }) => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     // Use Context
     const { user } = useContext(AuthContext);
+    // Navigate
+    const navigate = useNavigate();
 
     // Handle Booking
     const handleBooking = data => {
@@ -16,6 +19,7 @@ const BookingModal = ({ bookingProduct, setBookingProduct }) => {
         const booking = {
             productName: bookingProduct?.productName,
             resellPrice: bookingProduct?.resellPrice,
+            productImg: bookingProduct?.img,
             productId: bookingProduct?._id,
             buyerName: user?.displayName,
             buyerEmail: user?.email,
@@ -34,18 +38,14 @@ const BookingModal = ({ bookingProduct, setBookingProduct }) => {
             .then(bookingData => {
                 console.log(bookingData);
                 if (bookingData?.acknowledged) {
-                    // Change Product Status To Sold
-                    fetch(`http://localhost:5000/products/status/${bookingProduct?._id}`, {
-                        method: 'PUT'
-                    })
-                        .then(res => res.json())
-                        .then(productData => console.log(productData))
                     // Success Toast
                     toast.success(`${bookingProduct?.productName} Booked Successfully`);
                     // Set Booking Product To Close Modal
                     setBookingProduct(null);
                     // Reset Form
                     reset();
+                    // Navigate
+                    navigate('/dashboard/myorders');
                 }
             })
             .catch(error => {
