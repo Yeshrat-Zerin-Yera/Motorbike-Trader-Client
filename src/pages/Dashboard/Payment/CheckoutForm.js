@@ -47,13 +47,16 @@ const CheckoutForm = ({ booking }) => {
             type: 'card',
             card
         });
+        // Set Card Error
         if (error) {
             setCardError(error.message)
         }
         else {
             setCardError('');
         }
+        // Set Success
         setSuccess('');
+        // Set Processing
         setProcessing(true);
         const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(
             clientSecret,
@@ -67,6 +70,7 @@ const CheckoutForm = ({ booking }) => {
                 },
             },
         );
+        // Set Card Error
         if (confirmError) {
             setCardError(confirmError.message);
             return;
@@ -91,13 +95,16 @@ const CheckoutForm = ({ booking }) => {
                 .then((data) => {
                     console.log(data)
                     if (data.insertedId) {
+                        // Set Success
                         setSuccess('Your Payment Completed Successfully');
+                        // Set Transaction Id
                         setTransactionId(paymentIntent.id);
                         // Success Toast
                         toast.success('Your Payment Completed Successfully');
                     }
                 });
         }
+        // Set Processing
         setProcessing(false);
     };
 
