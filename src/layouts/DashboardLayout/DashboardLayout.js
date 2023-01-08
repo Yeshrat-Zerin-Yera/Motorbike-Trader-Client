@@ -50,6 +50,7 @@ const DashboardLayout = () => {
                             userRole === 'Admin' && <>
                                 <li><Link to='/dashboard/allsellers' className={btnClass}>All Sellers</Link></li>
                                 <li><Link to='/dashboard/allbuyers' className={btnClass}>All Buyers</Link></li>
+                                <li><Link to='/dashboard/reporteditems' className={btnClass}>Reported Items</Link></li>
                             </>
                         }
                     </ul>

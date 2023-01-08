@@ -1,9 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import useTitle from '../../../hooks/useTitle';
+import Loading from '../../Shared/Loading/Loading';
 
 const AddAProduct = () => {
     // Use Title
@@ -14,9 +15,18 @@ const AddAProduct = () => {
     const navigate = useNavigate();
     // Auth Context
     const { user } = useContext(AuthContext);
+    // Set Loading
+    const [loading, setLoading] = useState(false);
+
+    // Loading
+    if (loading) {
+        return <Loading></Loading>
+    }
 
     // Handle Add Product
     const handleAddProduct = data => {
+        // Set Loading
+        setLoading(true);
         // Post Image To Imgbb
         const img = data.img[0];
         const formData = new FormData();
@@ -61,8 +71,13 @@ const AddAProduct = () => {
                         .then(productData => {
                             console.log(productData);
                             if (productData?.acknowledged) {
+                                // Set Loading
+                                setLoading(false);
+                                // Toast Success
                                 toast.success(`Product ${data?.productName} Added Successfully`);
+                                // Reset
                                 reset();
+                                // Navigate
                                 navigate('/dashboard/myproducts');
                             }
                         })

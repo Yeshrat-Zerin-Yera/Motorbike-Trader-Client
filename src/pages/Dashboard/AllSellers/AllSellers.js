@@ -74,7 +74,7 @@ const AllSellers = () => {
                 })
                 .catch(error => {
                     console.error(error);
-                    // Modify Successfull Toast
+                    // Modify Unsuccessfull Toast
                     toast.error(`Seller ${seller?.name} Verification Was Unsuccessfull`);
                 })
         }
