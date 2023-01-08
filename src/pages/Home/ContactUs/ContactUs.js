@@ -20,7 +20,7 @@ const ContactUs = () => {
         < form onChange={handleGetMailDetails} method="post" action={`mailto:yeshratzerinyera@gmail.com?subject=${subject}&body=${message}`
         } className='flex items-center flex-col gap-3 p-6 mt-12' style={{ backgroundImage: `url(${ContactUsImg})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}>
             {/* Contact Us Title */}
-            < h4 className="text-2xl font-bold text-center text-white" > Contact Us</h4 >
+            < h4 className="text-2xl font-bold text-center text-white" >Contact Us</h4 >
             {/* Subject */}
             < input type="text" name='subject' placeholder="Subject" className="input input-bordered w-full max-w-xs" />
             {/* Message */}
