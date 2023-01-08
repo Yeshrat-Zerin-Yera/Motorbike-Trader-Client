@@ -57,8 +57,7 @@ const AddAProduct = () => {
                         email: user?.email,
                         phoneNumber: data?.phoneNumber,
                         location: data?.location,
-                        description: data?.description,
-                        isSellerVerified: false
+                        description: data?.description
                     }
                     fetch('https://motorbike-trader-server.vercel.app/products', {
                         method: 'POST',
