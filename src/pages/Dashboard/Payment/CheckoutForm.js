@@ -22,7 +22,7 @@ const CheckoutForm = ({ booking }) => {
 
     useEffect(() => {
         // Create PaymentIntent As Soon As The Page Loads
-        fetch("http://localhost:5000/create-payment-intent", {
+        fetch("https://motorbike-trader-server.vercel.app/create-payment-intent", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -84,7 +84,7 @@ const CheckoutForm = ({ booking }) => {
                 bookingId: _id,
                 productId
             };
-            fetch("http://localhost:5000/payments", {
+            fetch("https://motorbike-trader-server.vercel.app/payments", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

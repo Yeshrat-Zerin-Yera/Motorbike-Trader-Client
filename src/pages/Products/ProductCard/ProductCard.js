@@ -16,7 +16,7 @@ const ProductCard = ({ product, calculateYearsOfUse, setBookingProduct }) => {
         const processed = window.confirm(`Are You Sure You Want To Report Product ${product?.productName}`);
         // Report Product Operation
         if (processed) {
-            fetch(`http://localhost:5000/products/report/${product?._id}`, {
+            fetch(`https://motorbike-trader-server.vercel.app/products/report/${product?._id}`, {
                 method: 'PUT'
             })
                 .then(res => res.json())

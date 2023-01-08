@@ -15,7 +15,7 @@ const MyOrders = () => {
     // Get Orders By Email From Database
     const { data: bookings = [], isLoading } = useQuery({
         queryKey: ['bookings'],
-        queryFn: () => fetch(`http://localhost:5000/bookings?email=${user?.email}`, {
+        queryFn: () => fetch(`https://motorbike-trader-server.vercel.app/bookings?email=${user?.email}`, {
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
             }

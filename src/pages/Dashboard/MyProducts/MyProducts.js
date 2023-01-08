@@ -15,7 +15,7 @@ const MyProducts = () => {
     // Get User's Products From Database
     const { data: products = [], isLoading, refetch } = useQuery({
         queryKey: ['products'],
-        queryFn: () => fetch(`http://localhost:5000/products/?email=${user?.email}`)
+        queryFn: () => fetch(`https://motorbike-trader-server.vercel.app/products/?email=${user?.email}`)
             .then(res => res.json())
     });
 
@@ -35,7 +35,7 @@ const MyProducts = () => {
         const processed = window.confirm(`Are You Sure You Want To Delete Product ${product?.productName}`);
         // Delete Operation
         if (processed) {
-            fetch(`http://localhost:5000/products/${product?._id}`, {
+            fetch(`https://motorbike-trader-server.vercel.app/products/${product?._id}`, {
                 method: 'DELETE',
             })
                 .then(res => res.json())
@@ -62,7 +62,7 @@ const MyProducts = () => {
         const processed = window.confirm(`Are You Sure You Want To Advertise Product ${product?.productName}`);
         // Advertise Operation
         if (processed) {
-            fetch(`http://localhost:5000/products/advertise/${product?._id}`, {
+            fetch(`https://motorbike-trader-server.vercel.app/products/advertise/${product?._id}`, {
                 method: 'PUT'
             })
                 .then(res => res.json())

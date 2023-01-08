@@ -12,7 +12,7 @@ const AllBuyers = () => {
     // Get All Sellers From Database
     const { data: buyers = [], isLoading, refetch } = useQuery({
         queryKey: ['buyers'],
-        queryFn: () => fetch('http://localhost:5000/users/buyers', {
+        queryFn: () => fetch('https://motorbike-trader-server.vercel.app/users/buyers', {
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
             }
@@ -36,7 +36,7 @@ const AllBuyers = () => {
         const processed = window.confirm(`Are You Sure You Want To Delete Buyer ${buyer?.name}`);
         // Delete Operation
         if (processed) {
-            fetch(`http://localhost:5000/users/${buyer?._id}`, {
+            fetch(`https://motorbike-trader-server.vercel.app/users/${buyer?._id}`, {
                 method: 'DELETE',
             })
                 .then(res => res.json())

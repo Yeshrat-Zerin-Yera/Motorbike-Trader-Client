@@ -14,7 +14,7 @@ const Blog = () => {
 
     // Get Blogs From Database
     useEffect(() => {
-        axios.get('http://localhost:5000/blogs')
+        axios.get('https://motorbike-trader-server.vercel.app/blogs')
             .then(data => {
                 // Set Blogs
                 setBlogs(data.data);

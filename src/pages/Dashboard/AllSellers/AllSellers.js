@@ -12,7 +12,7 @@ const AllSellers = () => {
     // Get All Sellers From Database
     const { data: sellers = [], isLoading, refetch } = useQuery({
         queryKey: ['sellers'],
-        queryFn: () => fetch('http://localhost:5000/users/sellers')
+        queryFn: () => fetch('https://motorbike-trader-server.vercel.app/users/sellers')
             .then(res => res.json())
     });
 
@@ -32,7 +32,7 @@ const AllSellers = () => {
         const processed = window.confirm(`Are You Sure You Want To Delete Seller ${seller?.name}`);
         // Delete Operation
         if (processed) {
-            fetch(`http://localhost:5000/users/${seller?._id}`, {
+            fetch(`https://motorbike-trader-server.vercel.app/users/${seller?._id}`, {
                 method: 'DELETE',
             })
                 .then(res => res.json())
@@ -59,7 +59,7 @@ const AllSellers = () => {
         const processed = window.confirm(`Are You Sure You Want To Verify Seller ${seller?.name}`);
         // Verify Operation
         if (processed) {
-            fetch(`http://localhost:5000/users/${seller?._id}`, {
+            fetch(`https://motorbike-trader-server.vercel.app/users/${seller?._id}`, {
                 method: 'PUT'
             })
                 .then(res => res.json())

@@ -94,7 +94,7 @@ const SignIn = () => {
 
     // Post User To Database
     const saveUserToDB = (dbUser) => {
-        fetch('http://localhost:5000/users', {
+        fetch('https://motorbike-trader-server.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

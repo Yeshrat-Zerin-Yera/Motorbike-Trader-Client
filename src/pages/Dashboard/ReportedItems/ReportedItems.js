@@ -12,7 +12,7 @@ const ReportedItems = () => {
     // Get Reported Products From Database
     const { data: products = [], isLoading, refetch } = useQuery({
         queryKey: ['products'],
-        queryFn: () => fetch('http://localhost:5000/reportedproducts')
+        queryFn: () => fetch('https://motorbike-trader-server.vercel.app/reportedproducts')
             .then(res => res.json())
     });
 
@@ -32,7 +32,7 @@ const ReportedItems = () => {
         const processed = window.confirm(`Are You Sure You Want To Delete Reported Product ${product?.productName}`);
         // Delete Operation
         if (processed) {
-            fetch(`http://localhost:5000/products/${product?._id}`, {
+            fetch(`https://motorbike-trader-server.vercel.app/products/${product?._id}`, {
                 method: 'DELETE',
             })
                 .then(res => res.json())

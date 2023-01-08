@@ -46,12 +46,12 @@ const router = createBrowserRouter([
             {
                 path: '/blogs/:id',
                 element: <BlogDetails></BlogDetails>,
-                loader: ({ params }) => fetch(`http://localhost:5000/blogs/${params.id}`)
+                loader: ({ params }) => fetch(`https://motorbike-trader-server.vercel.app/blogs/${params.id}`)
             },
             {
                 path: '/categories/:id',
                 element: <PrivateRoute><Products></Products></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/categories/${params?.id}`)
+                loader: ({ params }) => fetch(`https://motorbike-trader-server.vercel.app/categories/${params?.id}`)
             }
         ]
     },
@@ -87,7 +87,7 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/payment/:id',
                 element: <Payment></Payment>,
-                loader: ({ params }) => fetch(`http://localhost:5000/bookings/payment/${params?.id}`)
+                loader: ({ params }) => fetch(`https://motorbike-trader-server.vercel.app/bookings/payment/${params?.id}`)
             }
         ]
     },

@@ -27,7 +27,7 @@ const BookingModal = ({ bookingProduct, setBookingProduct }) => {
             buyerLocation: data?.location
         };
         // Post Booking To Database
-        fetch('http://localhost:5000/bookings', {
+        fetch('https://motorbike-trader-server.vercel.app/bookings', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
