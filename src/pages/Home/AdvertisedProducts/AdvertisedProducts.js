@@ -1,8 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import Loading from '../../Shared/Loading/Loading';
 
 const AdvertisedProducts = () => {
+    // Auth Context
+    const { user } = useContext(AuthContext);
+
     // Get All Advertised Products From Database
     const { data: products = [], isLoading } = useQuery({
         queryKey: ['products'],
@@ -21,7 +25,7 @@ const AdvertisedProducts = () => {
     }
 
     // If There Is No Advertised Products
-    if (products.length === 0) {
+    if (products.length === 0 || !user) {
         return;
     }
 
