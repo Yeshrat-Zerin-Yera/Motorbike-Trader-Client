@@ -5,6 +5,7 @@ import { toast } from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import useTitle from '../../../hooks/useTitle';
+import useToken from '../../../hooks/useToken';
 
 const SignIn = () => {
     // Title
@@ -20,9 +21,19 @@ const SignIn = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
+    // Token
+    const [signInUserEmail, setSignInUserEmail] = useState('');
+    const [token] = useToken(signInUserEmail);
+
+    // Navigate If Token Present
+    if (token) {
+        navigate(from, { replace: true });
+    }
 
     // Handle Sign In
     const handleSignIn = data => {
+        // Set Sign Up User Email
+        setSignInUserEmail('');
         // Set Sign In Error
         setSignInError('');
         console.log(data);
@@ -30,12 +41,12 @@ const SignIn = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                // Set Sign Up User Email
+                setSignInUserEmail(user?.email);
                 // Reset Form
                 reset();
                 // Toast Sign In
                 toast.success('Sign In Successfull');
-                // Navigate
-                navigate(from, { replace: true });
             })
             .catch(error => {
                 console.error(error);
@@ -46,6 +57,8 @@ const SignIn = () => {
 
     // Handle Other Sign In
     const handleOtherSignIn = provider => {
+        // Set Sign Up User Email
+        setSignInUserEmail('');
         signInProvider(provider)
             .then(result => {
                 const user = result.user;
@@ -60,8 +73,6 @@ const SignIn = () => {
                 saveUserToDB(dbUser);
                 // Toast Sign In
                 toast.success('Sign In Successfull');
-                // Navigate
-                navigate(from, { replace: true });
             })
             .catch(error => console.error(error))
     };
@@ -93,6 +104,8 @@ const SignIn = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
+                // Set Sign Up User Email
+                setSignInUserEmail(dbUser?.email);
             })
 
     };

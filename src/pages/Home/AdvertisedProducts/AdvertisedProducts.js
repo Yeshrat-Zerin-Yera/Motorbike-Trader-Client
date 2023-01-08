@@ -6,7 +6,11 @@ const AdvertisedProducts = () => {
     // Get All Advertised Products From Database
     const { data: products = [], isLoading } = useQuery({
         queryKey: ['products'],
-        queryFn: () => fetch('http://localhost:5000/products/advertised')
+        queryFn: () => fetch('http://localhost:5000/products/advertised', {
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
             .then(res => res.json())
     });
     console.log(products);

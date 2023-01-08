@@ -5,6 +5,7 @@ import { toast } from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import useTitle from '../../../hooks/useTitle';
+import useToken from '../../../hooks/useToken';
 
 const SignUp = () => {
     // Use Title
@@ -18,9 +19,19 @@ const SignUp = () => {
     const googleProvider = new GoogleAuthProvider();
     // Navigate
     const navigate = useNavigate();
+    // Token
+    const [signUpUserEmail, setSignUpUserEmail] = useState('');
+    const [token] = useToken(signUpUserEmail);
+
+    // Navigate If Token Present
+    if (token) {
+        navigate('/');
+    }
 
     // Handle Sign Up
     const handleSignUp = data => {
+        // Set Sign Up User Email
+        setSignUpUserEmail('');
         // Set Sign Up Error
         setSignUpError('');
         console.log(data);
@@ -44,11 +55,10 @@ const SignUp = () => {
                         if (data?.role === 'Seller') {
                             dbUser.status = 'Unverified';
                         }
+                        // Save User To Database
                         saveUserToDB(dbUser);
                         // Toast Sign Up
                         toast.success('Sign Up Successfull');
-                        // Navigate
-                        navigate('/signin');
                     })
                     .catch(error => console.error(error.message))
                 // Reset Form
@@ -63,6 +73,8 @@ const SignUp = () => {
 
     // Handle Other Sign Up
     const handleOtherSignUp = provider => {
+        // Set Sign Up User Email
+        setSignUpUserEmail('');
         signInProvider(provider)
             .then(result => {
                 const user = result.user;
@@ -74,11 +86,10 @@ const SignUp = () => {
                     img: user?.photoURL,
                     role: 'Buyer'
                 }
+                // Save User To Database
                 saveUserToDB(dbUser);
                 // Toast Sign Up
                 toast.success('Sign Up Successfull');
-                // Navigate
-                navigate('/signin');
             })
             .catch(error => console.error(error))
     };
@@ -95,6 +106,8 @@ const SignUp = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
+                // Set Sign Up User Email
+                setSignUpUserEmail(dbUser?.email);
             })
     };
 
