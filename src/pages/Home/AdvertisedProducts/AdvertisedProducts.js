@@ -10,11 +10,7 @@ const AdvertisedProducts = () => {
     // Get All Advertised Products From Database
     const { data: products = [], isLoading } = useQuery({
         queryKey: ['products'],
-        queryFn: () => fetch('https://motorbike-trader-server.vercel.app/products/advertised', {
-            headers: {
-                authorization: `bearer ${localStorage.getItem('accessToken')}`
-            }
-        })
+        queryFn: () => fetch('https://motorbike-trader-server.vercel.app/products/advertised')
             .then(res => res.json())
     });
     console.log(products);
